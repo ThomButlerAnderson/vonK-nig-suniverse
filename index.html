@@ -15,7 +15,7 @@
   <div class="chat-section">
     <h2>Talk to Karl</h2>
     <div class="chat-input">
-      <input type="text" id="userInput" placeholder="Ask Karl a question..." />
+      <textarea id="userInput" placeholder="Ask Karl a question..." oninput="autoResize(this)"></textarea>
       <button onclick="sendMessage()">Send</button>
     </div>
     <div id="responseBox" class="response-box"></div>
