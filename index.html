@@ -14,17 +14,20 @@
   </div>
 
   <div class="chat-section">
-    <h2>Talk to Karl</h2>
-    <div class="chat-input">
-      <textarea id="userInput" placeholder="Ask Karl a question..." oninput="autoResize(this)"></textarea>
-      <button onclick="sendMessage()">Send</button>
-    </div>
+  <div class="chat-input">
+    <textarea
+      id="userInput"
+      placeholder="Ask Karl a question..."
+      oninput="autoResize(this)"></textarea>
+    <button onclick="sendMessage()">Send</button>
   </div>
+</div>
 
-  <div class="karl-response-section">
-    <h2>Karl's Response</h2>
-    <div id="responseBox" class="response-box"></div>
+<div class="karl-response-section">
+  <div id="responseBox" class="response-box">
+    <em class="placeholder">Karl’s response will appear here...</em>
   </div>
+</div>
 
   <script src="script.js"></script>
 </body>
