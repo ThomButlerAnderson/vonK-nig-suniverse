@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Von König's War</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 class="announcement">Coming Fall 2025</h1>
+  <div class="announcement">Coming, Fall 2025</div>
 
   <div class="image-container">
-    <img src="von_konigs_war_cover.jpg" alt="Von König's War Cover" class="cover-only" />
+    <img src="cover.jpg" alt="Von König's War Cover" class="cover-only" />
   </div>
 
   <div class="chat-section">
@@ -18,6 +19,10 @@
       <textarea id="userInput" placeholder="Ask Karl a question..." oninput="autoResize(this)"></textarea>
       <button onclick="sendMessage()">Send</button>
     </div>
+  </div>
+
+  <div class="karl-response-section">
+    <h2>Karl's Response</h2>
     <div id="responseBox" class="response-box"></div>
   </div>
 
