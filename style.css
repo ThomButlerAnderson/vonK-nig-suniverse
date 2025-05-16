@@ -1,20 +1,15 @@
 body {
   background-color: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   margin: 0;
-}
-
-.centered {
-  text-align: center;
+  padding: 0;
+  font-family: 'Georgia', serif;
 }
 
 .announcement {
-  font-family: 'Georgia', serif;
+  text-align: center;
   font-size: 2.2rem;
   color: #FFCC00; /* Weimar Republic gold */
+  margin-top: 20px;
   margin-bottom: 20px;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
   opacity: 0;
@@ -22,9 +17,15 @@ body {
   animation-delay: 1s;
 }
 
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .cover-only {
   max-width: 90vw;
-  max-height: 90vh;
+  max-height: 85vh;
   border-radius: 12px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
   transition: transform 0.3s ease;
