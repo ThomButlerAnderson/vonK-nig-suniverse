@@ -66,14 +66,14 @@ body {
   margin: 30px auto 50px auto;
   padding: 20px;
   text-align: center;
-  background-color: #8B0000; /* Deep crimson red */
+  background-color: #111; /* Black */
   border-top: 2px solid #444;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
 }
 
 .chat-section h2 {
-  color: #111;
+  color: #FFCC00;
   font-size: 3.5vw;
   font-family: 'Georgia', serif;
   margin-bottom: 20px;
