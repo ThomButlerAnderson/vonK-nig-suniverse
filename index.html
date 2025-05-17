@@ -2,33 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Von König's War</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="announcement">Coming Fall 2025 - Order Now</div>
-
-  <div class="image-container">
-      <img src="von_konigs_war_cover.jpg" alt="Von König's War Cover" class="cover-only" />
+  <div class="flip-box">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <img src="von_konigs_war_cover.jpg" alt="Front Cover" />
+      </div>
+      <div class="flip-back">
+        <img src="von_konigs_war_back.png" alt="Back Cover" />
+      </div>
+    </div>
   </div>
-
-  <div class="chat-section">
-  <div class="chat-input">
-    <textarea
-      id="userInput"
-      placeholder="Ask Karl a question..."
-      oninput="autoResize(this)"></textarea>
-    <button onclick="sendMessage()">Send</button>
-  </div>
-</div>
-
-<div class="karl-response-section">
-  <div id="responseBox" class="response-box">
-    <em class="placeholder">Karl’s response will appear here...</em>
-  </div>
-</div>
-
-  <script src="script.js"></script>
 </body>
 </html>
