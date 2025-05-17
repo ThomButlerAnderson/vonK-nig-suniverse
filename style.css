@@ -1,148 +1,52 @@
-/* Reset and layout */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  background-color: #ffffff; /* White background */
-  color: #111; /* Deep text color for contrast */
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
   font-family: 'Georgia', serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+}
+
+/* Flip Box Container */
+.flip-box {
+  width: 350px;
+  height: 525px;
+  perspective: 1200px;
+}
+
+/* Flip Animation Logic */
+.flip-inner {
+  position: relative;
   width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
 }
 
-/* Announcement */
-.announcement {
-  text-align: center;
-  font-size: 3.5vw;
-  color: #B8860B; /* Antique gold for white background */
-  margin-top: 3vh;
-  margin-bottom: 2vh;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 2.5s ease-in forwards;
-  animation-delay: 1s;
+/* Hover Trigger */
+.flip-box:hover .flip-inner {
+  transform: rotateY(180deg);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Book Cover */
-.image-container {
+/* Front and Back Faces */
+.flip-front, .flip-back {
+  position: absolute;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 2vh 0;
-}
-
-.cover-only {
-  width: auto;
-  max-height: 60vh;
-  max-width: 95vw;
+  height: 100%;
+  backface-visibility: hidden;
   border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.6s ease;
-  transform-origin: center center;
-}
-
-.cover-only:hover {
-  transform: scale(1.03);
-}
-
-/* Chat Section */
-.chat-section {
-  width: 100%;
-  max-width: 800px;
-  margin: 30px auto 20px auto;
-  padding: 20px;
-  text-align: center;
-  background-color: #8B0000; /* Red background */
-  border-top: 2px solid #aaa;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-}
-
-/* Chat Input */
-.chat-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-}
-
-.chat-input textarea {
-  width: 100%;
-  max-width: 600px;
-  min-height: 60px;
-  max-height: 200px;
-  padding: 15px;
-  font-size: 1.2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f4f4f4;
-  color: #111;
-  resize: none;
   overflow: hidden;
-  line-height: 1.5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.chat-input button {
-  padding: 15px 30px;
-  font-size: 1rem;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.chat-input button:hover {
-  background-color: #555;
-}
-
-/* Karl's Response Section */
-.karl-response-section {
+.flip-front img, .flip-back img {
   width: 100%;
-  max-width: 800px;
-  margin: 20px auto 50px auto;
-  padding: 20px;
-  text-align: center;
-  background-color: #FFCC00; /* Gold background */
-  color: #111;
-  border-top: 2px solid #888;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Response Text Box */
-.response-box {
-  font-style: normal;
-  font-size: 1.2rem;
-  min-height: 150px;
-  padding: 15px;
-  background-color: #ffffe0; /* Pale yellow */
-  color: #111;
-  border-radius: 8px;
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-  white-space: pre-wrap;
-  text-align: left;
-  transition: all 0.3s ease-in-out;
-}
-
-.response-box .placeholder {
-  color: #666;
-  font-style: italic;
+/* Flip back side */
+.flip-back {
+  transform: rotateY(180deg);
 }
