@@ -1,37 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Von König’s Universe</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <h1 class="title">Von König’s Universe</h1>
+<script>
+  console.log("🌐 Front-end script is running");
 
-  <div class="chat-section">
-    <div class="chat-input">
-      <textarea id="userInput" placeholder="Ask Karl a question..." oninput="autoResize(this)"></textarea>
-      <button onclick="sendMessage()">Send</button>
-    </div>
-  </div>
+  document.addEventListener("DOMContentLoaded", () => {
+    const textarea = document.getElementById("userInput");
+    const button = document.querySelector("button");
+    const responseBox = document.getElementById("responseBox");
 
-  <div class="karl-response-section">
-    <div id="responseBox" class="response-box">
-      <em class="placeholder">Karl’s response will appear here...</em>
-    </div>
-  </div>
-
-  <script>
     function autoResize(textarea) {
       textarea.style.height = "auto";
       textarea.style.height = textarea.scrollHeight + "px";
     }
 
-    async function sendMessage() {
-      const textarea = document.getElementById("userInput");
-      const userInput = textarea.value.trim();
-      const responseBox = document.getElementById("responseBox");
+    if (!textarea || !button || !responseBox) {
+      console.error("❌ One or more elements (textarea, button, responseBox) not found.");
+      return;
+    }
 
+    button.addEventListener("click", async () => {
+      const userInput = textarea.value.trim();
       if (!userInput) {
         responseBox.innerHTML = "<span class='placeholder'>Please enter a question for Karl Müller.</span>";
         return;
@@ -40,7 +26,7 @@
       responseBox.innerHTML = "<span class='placeholder'>Karl is preparing his reply...</span>";
 
       try {
-        const response = await fetch("http://localhost:3000/chat", {
+        const response = await fetch("/api/chat", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -56,10 +42,11 @@
           responseBox.innerHTML = "<span class='placeholder'>Karl was silent. Something went wrong.</span>";
         }
       } catch (error) {
-        console.error("Error:", error);
+        console.error("❌ Fetch error:", error);
         responseBox.innerHTML = "<span class='placeholder'>An error occurred. Karl is silent.</span>";
       }
-    }
-  </script>
-</body>
-</html>
+    });
+
+    textarea.addEventListener("input", () => autoResize(textarea));
+  });
+</script>
