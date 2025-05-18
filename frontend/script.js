@@ -1,4 +1,4 @@
-function sendMessage() {
+async function sendMessage() {
   const input = document.getElementById("userInput");
   const responseBox = document.getElementById("responseBox");
   const userMessage = input.value.trim();
@@ -12,20 +12,31 @@ function sendMessage() {
   userDiv.innerHTML = `<strong>You:</strong> ${userMessage}`;
   responseBox.appendChild(userDiv);
 
-  const karlDiv = document.createElement("div");
-  karlDiv.innerHTML = `<strong>Karl Müller:</strong> ${generateFakeKarlReply(userMessage)}`;
-  responseBox.appendChild(karlDiv);
-
   input.value = "";
   autoResize(input);
-  responseBox.scrollTop = responseBox.scrollHeight;
+
+  try {
+    const res = await fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: userMessage })
+    });
+
+    const data = await res.json();
+
+    const karlDiv = document.createElement("div");
+    karlDiv.innerHTML = `<strong>Karl Müller:</strong> ${data.reply}`;
+    responseBox.appendChild(karlDiv);
+    responseBox.scrollTop = responseBox.scrollHeight;
+
+  } catch (error) {
+    const errorDiv = document.createElement("div");
+    errorDiv.innerHTML = `<em>Karl is momentarily unreachable. Bitte versuch es später erneut.</em>`;
+    responseBox.appendChild(errorDiv);
+  }
 }
 
 function autoResize(textarea) {
   textarea.style.height = 'auto';
   textarea.style.height = textarea.scrollHeight + 'px';
-}
-
-function generateFakeKarlReply(question) {
-  return `Ah, mein Freund, that is a question worthy of contemplation. Alas, the archives remain offline—but soon, I shall retrieve the truth from our records.`;
 }
