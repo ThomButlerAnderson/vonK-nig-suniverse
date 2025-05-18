@@ -5,32 +5,27 @@ function sendMessage() {
 
   if (!userMessage) return;
 
-  // Clear placeholder if it's the first message
   const placeholder = responseBox.querySelector('.placeholder');
   if (placeholder) responseBox.innerHTML = '';
 
-  // Display user's message
   const userDiv = document.createElement("div");
   userDiv.innerHTML = `<strong>You:</strong> ${userMessage}`;
   responseBox.appendChild(userDiv);
 
-  // Display Karl’s fake response
   const karlDiv = document.createElement("div");
   karlDiv.innerHTML = `<strong>Karl Müller:</strong> ${generateFakeKarlReply(userMessage)}`;
   responseBox.appendChild(karlDiv);
 
-  // Clear input and reset height
   input.value = "";
   autoResize(input);
   responseBox.scrollTop = responseBox.scrollHeight;
 }
 
-// Expanding textarea effect
 function autoResize(textarea) {
   textarea.style.height = 'auto';
   textarea.style.height = textarea.scrollHeight + 'px';
 }
 
-// Placeholder response from Karl
 function generateFakeKarlReply(question) {
-  return
+  return `Ah, mein Freund, that is a question worthy of contemplation. Alas, the archives remain offline—but soon, I shall retrieve the truth from our records.`;
+}
