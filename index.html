@@ -17,5 +17,20 @@
 </head>
 <body>
   <h1 class="title">Von König’s Universe</h1>
+  <div class="chat-section">
+  <div class="chat-input">
+    <textarea id="userInput" placeholder="Ask Karl a question..." oninput="autoResize(this)"></textarea>
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<div class="karl-response-section">
+  <div id="responseBox" class="response-box">
+    <em class="placeholder">Karl’s response will appear here...</em>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
