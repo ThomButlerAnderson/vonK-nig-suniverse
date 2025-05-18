@@ -5,9 +5,11 @@ async function sendMessage() {
 
   if (!userMessage) return;
 
+  // Clear placeholder if needed
   const placeholder = responseBox.querySelector('.placeholder');
   if (placeholder) responseBox.innerHTML = '';
 
+  // Display user message
   const userDiv = document.createElement("div");
   userDiv.innerHTML = `<strong>You:</strong> ${userMessage}`;
   responseBox.appendChild(userDiv);
@@ -24,6 +26,7 @@ async function sendMessage() {
 
     const data = await res.json();
 
+    // Display Karl's reply
     const karlDiv = document.createElement("div");
     karlDiv.innerHTML = `<strong>Karl Müller:</strong> ${data.reply}`;
     responseBox.appendChild(karlDiv);
@@ -31,7 +34,7 @@ async function sendMessage() {
 
   } catch (error) {
     const errorDiv = document.createElement("div");
-    errorDiv.innerHTML = `<em>Karl is momentarily unreachable. Bitte versuch es später erneut.</em>`;
+    errorDiv.innerHTML = `<em>Karl is momentarily unavailable. Bitte versuch es später erneut.</em>`;
     responseBox.appendChild(errorDiv);
   }
 }
