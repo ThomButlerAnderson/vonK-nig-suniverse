@@ -1,3 +1,7 @@
+
+// At the top of script.js
+console.log('🟢 script.js has loaded');
+
 async function sendMessage() {
   const input = document.getElementById("userInput");
   const responseBox = document.getElementById("responseBox");
