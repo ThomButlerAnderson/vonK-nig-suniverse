@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const responseBox = document.getElementById("responseBox");
 
   if (!textarea || !responseBox) {
-    console.error("❌ Missing textarea or responseBox element.");
+    console.error("❌ Missing textarea or responseBox.");
     return;
   }
 
   textarea.addEventListener("keydown", async (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault();
+      event.preventDefault(); // Prevent new line
       const message = textarea.value.trim();
       if (!message) return;
 
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json();
         responseBox.textContent = data.reply || "Karl was silent.";
       } catch (error) {
-        console.error("❌ Fetch failed:", error);
+        console.error("❌ Fetch error:", error);
         responseBox.textContent = "An error occurred. Karl is silent.";
       }
 
