@@ -1,49 +1,37 @@
+console.log("✅ script.js is running");
 
-// At the top of script.js
-console.log('🟢 script.js has loaded');
-
-async function sendMessage() {
-  const input = document.getElementById("userInput");
+document.addEventListener("DOMContentLoaded", () => {
+  const textarea = document.getElementById("userInput");
   const responseBox = document.getElementById("responseBox");
-  const userMessage = input.value.trim();
 
-  if (!userMessage) return;
-
-  // Clear placeholder if needed
-  const placeholder = responseBox.querySelector('.placeholder');
-  if (placeholder) responseBox.innerHTML = '';
-
-  // Display user message
-  const userDiv = document.createElement("div");
-  userDiv.innerHTML = `<strong>You:</strong> ${userMessage}`;
-  responseBox.appendChild(userDiv);
-
-  input.value = "";
-  autoResize(input);
-
-  try {
-    const res = await fetch('/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: userMessage })
-    });
-
-    const data = await res.json();
-
-    // Display Karl's reply
-    const karlDiv = document.createElement("div");
-    karlDiv.innerHTML = `<strong>Karl Müller:</strong> ${data.reply}`;
-    responseBox.appendChild(karlDiv);
-    responseBox.scrollTop = responseBox.scrollHeight;
-
-  } catch (error) {
-    const errorDiv = document.createElement("div");
-    errorDiv.innerHTML = `<em>Karl is momentarily unavailable. Bitte versuch es später erneut.</em>`;
-    responseBox.appendChild(errorDiv);
+  if (!textarea || !responseBox) {
+    console.error("❌ Missing textarea or responseBox element.");
+    return;
   }
-}
 
-function autoResize(textarea) {
-  textarea.style.height = 'auto';
-  textarea.style.height = textarea.scrollHeight + 'px';
-}
+  textarea.addEventListener("keydown", async (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      const message = textarea.value.trim();
+      if (!message) return;
+
+      responseBox.textContent = "Karl is preparing his reply…";
+
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message })
+        });
+
+        const data = await res.json();
+        responseBox.textContent = data.reply || "Karl was silent.";
+      } catch (error) {
+        console.error("❌ Fetch failed:", error);
+        responseBox.textContent = "An error occurred. Karl is silent.";
+      }
+
+      textarea.value = "";
+    }
+  });
+});
